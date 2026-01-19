@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Презентация: Сайттың басты беті (Тек HTML)</title>
+    <!-- Tailwind CSS қосу -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome иконкалары -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+        .slide {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .slide.active {
+            display: flex;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .code-block {
+            background-color: #1e1e1e;
+            color: #d4d4d4;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-family: 'Consolas', 'Monaco', monospace;
+            overflow-x: auto;
+            border-left: 4px solid #ea580c; /* Orange for HTML focus */
+        }
+        .tag { color: #569cd6; }
+        .attr { color: #9cdcfe; }
+        .val { color: #ce9178; }
+        .comment { color: #6a9955; }
+        
+        /* Прогресс бар */
+        .progress-container {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: #e5e7eb;
+        }
+        .progress-bar {
+            height: 100%;
+            background: #ea580c; /* Orange */
+            width: 0%;
+            transition: width 0.3s;
+        }
+        /* Кесте стилі */
+        .tag-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95rem;
+        }
+        .tag-table th, .tag-table td {
+            border: 1px solid #e5e7eb;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        .tag-table th {
+            background-color: #fff7ed;
+            color: #c2410c;
+        }
+        .tag-table tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 h-screen flex flex-col items-center justify-center relative">
+
+    <!-- Басқару түймелері -->
+    <div class="absolute top-4 right-4 text-sm text-gray-500">
+        Пернетақтадағы <i class="fa-solid fa-arrow-left mx-1"></i> <i class="fa-solid fa-arrow-right mx-1"></i> түймелерін қолданыңыз
+    </div>
+
+    <!-- СЛАЙДТАР КОНТЕЙНЕРІ -->
+    <div id="slide-container" class="w-full max-w-5xl h-[85vh] bg-white shadow-2xl rounded-2xl p-8 relative flex flex-col justify-center border-t-8 border-orange-500">
+
+        <!-- Слайд 1: Тақырып -->
+        <div class="slide active flex-col items-center justify-center text-center h-full">
+            <div class="mb-6">
+                <i class="fa-brands fa-html5 text-8xl text-orange-600 mb-4 animate-bounce"></i>
+            </div>
+            <h1 class="text-5xl font-bold text-gray-900 mb-4">Сайттың басты беті</h1>
+            <h2 class="text-3xl text-gray-700 mb-8">HTML тілі негізінде</h2>
+            
+            <div class="bg-orange-50 px-8 py-6 rounded-xl border border-orange-200">
+                <p class="text-xl text-gray-600 mb-2">Пән: <strong>Информатика (10-сынып)</strong></p>
+                <p class="text-xl text-gray-800 font-bold">Пән мұғалімі: Еламанов Рахат</p>
+            </div>
+        </div>
+
+        <!-- Слайд 2: Жоспар -->
+        <div class="slide flex-col h-full justify-center">
+            <h2 class="text-4xl font-bold text-gray-800 mb-10 border-b-2 border-orange-500 pb-2 inline-block">Сабақ жоспары</h2>
+            <div class="grid grid-cols-2 gap-10">
+                <div class="bg-white p-8 rounded-xl shadow-lg border-l-8 border-blue-500 transform hover:scale-105 transition duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold text-2xl mr-4">1</div>
+                        <h3 class="text-2xl font-bold">Сайттың басты беті</h3>
+                    </div>
+                    <p class="text-gray-600 text-lg">Басты беттің анықтамасы, мақсаты және оның веб-сайт құрылымындағы рөлі.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-lg border-l-8 border-orange-500 transform hover:scale-105 transition duration-300">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 font-bold text-2xl mr-4">2</div>
+                        <h3 class="text-2xl font-bold">HTML тегтері</h3>
+                    </div>
+                    <p class="text-gray-600 text-lg">Барлық қажетті тегтердің жазылуы, мағынасы және қолданылу ережелері.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Слайд 3: Басты бет деген не? -->
+        <div class="slide flex-col h-full">
+            <h2 class="text-4xl font-bold text-blue-700 mb-8 border-b-2 pb-2">1. Сайттың басты беті (Home Page)</h2>
+            <div class="flex flex-col h-full justify-center">
+                <div class="bg-blue-50 p-6 rounded-lg mb-6 border border-blue-200">
+                    <p class="text-xl leading-relaxed">
+                        <strong>Басты бет</strong> — бұл сайттың ең маңызды бөлігі. Ол пайдаланушы сайтқа кіргенде бірінші ашылатын және сайттың мазмұнымен таныстыратын "визиткасы".
+                    </p>
+                </div>
+                
+                <h3 class="text-2xl font-bold mb-4 text-gray-800">HTML тұрғысынан басты беттің құрылымы:</h3>
+                <div class="grid grid-cols-2 gap-6">
+                    <ul class="space-y-3 text-lg">
+                        <li class="flex items-center"><i class="fa-solid fa-check text-green-500 mr-3"></i> <strong>Header:</strong> Логотип және мәзір.</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-green-500 mr-3"></i> <strong>Main:</strong> Негізгі ақпарат.</li>
+                        <li class="flex items-center"><i class="fa-solid fa-check text-green-500 mr-3"></i> <strong>Footer:</strong> Байланыс ақпараты.</li>
+                    </ul>
+                    <div class="bg-gray-100 p-4 rounded border border-gray-300 flex flex-col items-center justify-center text-sm font-mono text-gray-500">
+                        <div class="w-full bg-blue-200 p-2 mb-2 text-center text-blue-800 border border-blue-300">&lt;header&gt;</div>
+                        <div class="w-full bg-green-100 h-24 p-2 mb-2 flex items-center justify-center text-green-800 border border-green-300">&lt;main&gt;</div>
+                        <div class="w-full bg-gray-300 p-2 text-center text-gray-700 border border-gray-400">&lt;footer&gt;</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Слайд 4: HTML негізгі тегтері (Құрылым) -->
+        <div class="slide flex-col h-full">
+            <h2 class="text-3xl font-bold text-orange-600 mb-6 border-b-2 pb-2">2. HTML Тегтері: Құжат құрылымы</h2>
+            <p class="mb-4 text-lg">Кез келген веб-бет, соның ішінде басты бет, мына негізгі тегтерден тұрады:</p>
+            
+            <div class="overflow-y-auto">
+                <table class="tag-table">
+                    <thead>
+                        <tr>
+                            <th width="20%">Тег</th>
+                            <th>Анықтамасы және Қызметі</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="font-mono text-blue-600 font-bold">&lt;!DOCTYPE html&gt;</td>
+                            <td>Браузерге бұл құжаттың HTML5 стандартында жазылғанын хабарлайды.</td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-blue-600 font-bold">&lt;html&gt;</td>
+                            <td>Бүкіл HTML құжаттың түбірі (контейнері). Барлық код осының ішінде жазылады.</td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-blue-600 font-bold">&lt;head&gt;</td>
+                            <td>Сайттың "басы". Мұнда техникалық ақпарат (метадеректер, тақырып) жазылады. Экранда көрсетілмейді.</td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-blue-600 font-bold">&lt;title&gt;</td>
+                            <td>Браузердің жоғарғы жолағында көрінетін беттің атауы.</td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-blue-600 font-bold">&lt;body&gt;</td>
+                            <td>Сайттың "денесі". Пайдаланушыға көрінетін барлық мазмұн (мәтін, сурет) осында жазылады.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Слайд 5: Мәтінмен жұмыс тегтері -->
+        <div class="slide flex-col h-full">
+            <h2 class="text-3xl font-bold text-orange-600 mb-6 border-b-2 pb-2">Мәтінмен жұмыс істеу тегтері</h2>
+            
+            <div class="grid grid-cols-2 gap-8 h-full">
+                <div class="overflow-y-auto">
+                    <table class="tag-table">
+                        <thead>
+                            <tr>
+                                <th width="30%">Тег</th>
+                                <th>Анықтамасы</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="font-mono text-blue-600 font-bold">&lt;h1&gt; ... &lt;h6&gt;</td>
+                                <td>Тақырыптар. &lt;h1&gt; – ең үлкен (басты) тақырып, &lt;h6&gt; – ең кішісі.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-mono text-blue-600 font-bold">&lt;p&gt;</td>
+                                <td>Абзац (Paragraph). Кәдімгі мәтінді жазу үшін қолданылады.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-mono text-blue-600 font-bold">&lt;br&gt;</td>
+                                <td>Жолды тасымалдау (Break). Жұпсыз тег.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-mono text-blue-600 font-bold">&lt;hr&gt;</td>
+                                <td>Көлденең сызық (Horizonal Rule). Бөлімдерді бөлу үшін.</td>
+                            </tr>
+                            <tr>
+                                <td class="font-mono text-blue-600 font-bold">&lt;b&gt; / &lt;strong&gt;</td>
+                                <td>Мәтінді <strong>жуан</strong> (bold) етіп көрсетеді.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="bg-white p-4 rounded shadow border border-gray-200">
+                    <p class="font-bold text-gray-500 mb-2">Мысалы:</p>
+                    <div class="code-block text-sm mb-4">
+<pre>
+<span class="tag">&lt;h1&gt;</span>Қазақстан<span class="tag">&lt;/h1&gt;</span>
+<span class="tag">&lt;h2&gt;</span>Астана қаласы<span class="tag">&lt;/h2&gt;</span>
+<span class="tag">&lt;p&gt;</span>Бұл <span class="tag">&lt;b&gt;</span>өте әдемі<span class="tag">&lt;/b&gt;</span> қала.<span class="tag">&lt;/p&gt;</span>
+<span class="tag">&lt;hr&gt;</span>
+</pre>
+                    </div>
+                    <p class="font-bold text-gray-500 mb-2">Нәтижесі:</p>
+                    <div class="border p-4 bg-gray-50 rounded">
+                        <h1 class="text-3xl font-bold mb-2">Қазақстан</h1>
+                        <h2 class="text-xl font-bold mb-2">Астана қаласы</h2>
+                        <p class="mb-2">Бұл <b>өте әдемі</b> қала.</p>
+                        <hr class="border-gray-400">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Слайд 6: Мультимедиа және Сілтемелер -->
+        <div class="slide flex-col h-full">
+            <h2 class="text-3xl font-bold text-orange-600 mb-6 border-b-2 pb-2">Мультимедиа және Тізімдер</h2>
+            
+            <table class="tag-table mb-6">
+                <thead>
+                    <tr>
+                        <th width="25%">Тег</th>
+                        <th>Анықтамасы және Атрибуттары</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="font-mono text-blue-600 font-bold">&lt;a&gt;</td>
+                        <td>
+                            <strong>Анкор (Сілтеме).</strong> Басқа бетке өту үшін.<br>
+                            <span class="text-sm text-gray-600">Атрибуты: <code>href="..."</code> (мекенжайы)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-mono text-blue-600 font-bold">&lt;img&gt;</td>
+                        <td>
+                            <strong>Сурет қою.</strong> Жұпсыз тег.<br>
+                            <span class="text-sm text-gray-600">Атрибуты: <code>src="..."</code> (сурет жолы), <code>alt="..."</code> (сипаттама)</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-mono text-blue-600 font-bold">&lt;ul&gt;, &lt;li&gt;</td>
+                        <td>
+                            <strong>Реттелмеген тізім</strong> (маркермен). <br>
+                            <code>ul</code> - тізім басы, <code>li</code> - тізім элементі.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-mono text-blue-600 font-bold">&lt;ol&gt;, &lt;li&gt;</td>
+                        <td>
+                            <strong>Реттелген тізім</strong> (сандармен: 1, 2, 3...).
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Слайд 7: Семантикалық тегтер (Бетті жобалау) -->
+        <div class="slide flex-col h-full">
+            <h2 class="text-3xl font-bold text-orange-600 mb-6 border-b-2 pb-2">Семантикалық тегтер (Бет құрылымы)</h2>
+            <p class="text-lg mb-4">Бұл тегтер сайтты бөліктерге бөліп, браузерге әр бөліктің мағынасын түсіндіреді:</p>
+            
+            <div class="grid grid-cols-2 gap-8 h-full">
+                <table class="tag-table h-fit">
+                    <tbody>
+                        <tr>
+                            <td class="font-mono text-blue-600 font-bold">&lt;header&gt;</td>
+                            <td>Сайттың немесе бөлімнің <strong>басы</strong>. Логотип, іздеу жолағы тұрады.</td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-blue-600 font-bold">&lt;nav&gt;</td>
+                            <td><strong>Навигация.</strong> Сайттың мәзірі (сілтемелер тобы).</td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-blue-600 font-bold">&lt;main&gt;</td>
+                            <td>Беттің <strong>негізгі, қайталанбайтын мазмұны</strong>.</td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-blue-600 font-bold">&lt;section&gt;</td>
+                            <td>Мазмұнның белгілі бір <strong>бөлімі</strong> (мысалы, "Біз туралы", "Жаңалықтар").</td>
+                        </tr>
+                        <tr>
+                            <td class="font-mono text-blue-600 font-bold">&lt;footer&gt;</td>
+                            <td>Сайттың <strong>аяғы</strong> (подвал). Авторлық құқық, байланыс, карта.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="flex items-center justify-center">
+                    <div class="w-64 border-2 border-dashed border-gray-400 p-2 bg-gray-50 text-center font-bold text-gray-500 text-sm">
+                        <div class="bg-red-100 py-2 mb-1 border border-red-200 text-red-700">&lt;header&gt;</div>
+                        <div class="bg-yellow-100 py-2 mb-1 border border-yellow-200 text-yellow-700">&lt;nav&gt;</div>
+                        <div class="bg-green-100 py-8 mb-1 border border-green-200 text-green-700 relative">
+                            &lt;main&gt;
+                            <div class="absolute bottom-1 left-2 right-2 border border-green-400 bg-green-50 text-xs py-1">&lt;section&gt;</div>
+                        </div>
+                        <div class="bg-blue-100 py-2 border border-blue-200 text-blue-700">&lt;footer&gt;</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Слайд 8: Қорытынды -->
+        <div class="slide flex-col h-full items-center justify-center text-center">
+            <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mb-6">
+                <i class="fa-solid fa-check text-4xl text-green-600"></i>
+            </div>
+            <h2 class="text-4xl font-bold text-gray-800 mb-6">Қорытынды</h2>
+            
+            <div class="text-left max-w-2xl text-lg space-y-4 bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+                <p><i class="fa-solid fa-angle-right text-orange-500 mr-2"></i> <strong>HTML</strong> — веб-сайттың құрылысын жасайтын негізгі тіл.</p>
+                <p><i class="fa-solid fa-angle-right text-orange-500 mr-2"></i> <strong>Сайттың басты беті</strong> — пайдаланушы үшін ең маңызды навигациялық нүкте.</p>
+                <p><i class="fa-solid fa-angle-right text-orange-500 mr-2"></i> <strong>Семантикалық тегтер</strong> (header, main, footer) кодты түсінікті және жүйелі етеді.</p>
+            </div>
+
+            <div class="mt-10">
+                <p class="text-gray-500 italic">Назарларыңызға рахмет!</p>
+                <p class="font-bold text-blue-600 mt-2">Мұғалім: Еламанов Рахат</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Навигация батырмалары -->
+    <div class="flex justify-between w-full max-w-5xl mt-6">
+        <button id="prevBtn" class="bg-white text-gray-800 font-bold py-2 px-6 rounded-lg shadow hover:bg-gray-100 transition disabled:opacity-50" onclick="changeSlide(-1)">
+            <i class="fa-solid fa-chevron-left mr-2"></i> Артқа
+        </button>
+        <span id="slide-indicator" class="text-gray-600 font-bold flex items-center bg-white px-4 py-2 rounded-lg shadow">
+            1 / 8
+        </span>
+        <button id="nextBtn" class="bg-orange-600 text-white font-bold py-2 px-6 rounded-lg shadow hover:bg-orange-700 transition disabled:opacity-50" onclick="changeSlide(1)">
+            Алға <i class="fa-solid fa-chevron-right ml-2"></i>
+        </button>
+    </div>
+
+    <!-- Прогресс бар -->
+    <div class="progress-container">
+        <div id="progressBar" class="progress-bar"></div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const indicator = document.getElementById('slide-indicator');
+        const progressBar = document.getElementById('progressBar');
+
+        function showSlide(index) {
+            if (index < 0) index = 0;
+            if (index >= slides.length) index = slides.length - 1;
+
+            currentSlide = index;
+
+            slides.forEach((slide) => {
+                slide.classList.remove('active');
+            });
+
+            slides[currentSlide].classList.add('active');
+
+            prevBtn.disabled = currentSlide === 0;
+            nextBtn.disabled = currentSlide === slides.length - 1;
+            
+            if (currentSlide === slides.length - 1) {
+                nextBtn.innerHTML = 'Аяқтау <i class="fa-solid fa-check ml-2"></i>';
+            } else {
+                nextBtn.innerHTML = 'Алға <i class="fa-solid fa-chevron-right ml-2"></i>';
+            }
+
+            indicator.textContent = `${currentSlide + 1} / ${slides.length}`;
+
+            const progress = ((currentSlide + 1) / slides.length) * 100;
+            progressBar.style.width = `${progress}%`;
+        }
+
+        function changeSlide(direction) {
+            showSlide(currentSlide + direction);
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowRight' || event.key === 'Space') {
+                changeSlide(1);
+            } else if (event.key === 'ArrowLeft') {
+                changeSlide(-1);
+            }
+        });
+
+        showSlide(0);
+    </script>
+</body>
+</html>
